@@ -6,12 +6,14 @@ int ModelSimServer::m_hard_soc = -1;
 int ModelSimServer::m_soft_soc = -1;
 
 
-ModelSimServer::ModelSimServer(char* ip_address, int port)
+ModelSimServer::ModelSimServer()
 {
     m_socket = -1;
-    if((m_socket = server_connect(ip_address, port)) == -1)
+    m_socket = server_connect();
+    if(m_socket == -1)
     {
         cout << "[MODELSIMSERVER]: server could not connect" << endl;
+        exit(1);
     }
 }
 
@@ -34,29 +36,22 @@ int ModelSimServer::listenOnSocket()
     hdr.msgType = NULL_MSG;
     hdr.length = 0;
     hdr.pyld = false;
-    while((client_socket = accept(m_socket, (struct sockaddr*)&client, (socklen_t*)&c))) 
+    while((client_socket = accept(m_socket, (struct sockaddr*)&client, (socklen_t*)&c)) != -1) 
     {     
-        if(client_socket < 0) 
+        recv_message(client_socket, &hdr,  nullptr);
+        if(hdr.msgType == CONNECT_HARDWARE)
         {
-	        cout << "[MODELSIMSERVER]: Client accept failed" << endl;
-        } 
-        else 
+            cout << "[MODELSIMSERVER]: hardware connected" << endl;
+            m_hard_soc = client_socket;
+        }
+        else if(hdr.msgType == CONNECT_SOFTWARE)
         {
-            recv_message(client_socket, &hdr,  nullptr);
-            if(hdr.msgType == CONNECT_HARDWARE)
-            {
-	            cout << "[MODELSIMSERVER]: hardware connected" << endl;
-                m_hard_soc = client_socket;
-            }
-            else if(hdr.msgType == CONNECT_SOFTWARE)
-            {
-	            cout << "[MODELSIMSERVER]: software connected" << endl;
-                m_soft_soc = client_socket;
-            }
+            cout << "[MODELSIMSERVER]: software connected" << endl;
+            m_soft_soc = client_socket;
         }
 	    if(m_soft_soc != -1 && m_hard_soc != -1)
 	    {
-		    cout << "Spawning Software and Hardware threads" << endl;
+		    cout << "[MODELSIMSERVER]: Spawning Software and Hardware threads" << endl;
 		    m_hard_thrd_hndl = new thread(hardware_thread);
 		    m_soft_thrd_hndl = new thread(software_thread); 
 	    }
@@ -64,7 +59,8 @@ int ModelSimServer::listenOnSocket()
         hdr.length = 0;
         hdr.pyld = false;
     }
-    return 0;
+    cout << "[MODELSIMSERVER]: Client accept failed" << endl;
+    return -1;
 }
 
 

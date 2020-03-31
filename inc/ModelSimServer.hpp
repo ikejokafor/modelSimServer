@@ -19,7 +19,7 @@ class ModelSimServer
         *
         * \return 
         */
-        ModelSimServer(char* ip_address = nullptr, int port = 8888);
+        ModelSimServer();
         
         
         /**
