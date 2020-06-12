@@ -18,12 +18,12 @@ ModelSimServer::ModelSimServer()
 }
 
 
-int ModelSimServer::listenOnSocket() 
-{   
+int ModelSimServer::listenOnSocket()
+{
     struct sockaddr client;
     int client_socket;
     int c;
-    
+
     if(m_socket == -1)
     {
         return -1;
@@ -36,8 +36,8 @@ int ModelSimServer::listenOnSocket()
     hdr.msgType = NULL_MSG;
     hdr.length = 0;
     hdr.pyld = false;
-    while((client_socket = accept(m_socket, (struct sockaddr*)&client, (socklen_t*)&c)) != -1) 
-    {     
+    while((client_socket = accept(m_socket, (struct sockaddr*)&client, (socklen_t*)&c)) != -1)
+    {
         recv_message(client_socket, &hdr,  nullptr);
         if(hdr.msgType == CONNECT_HARDWARE)
         {
@@ -53,7 +53,7 @@ int ModelSimServer::listenOnSocket()
 	    {
 		    cout << "[MODELSIMSERVER]: Spawning Software and Hardware threads" << endl;
 		    m_hard_thrd_hndl = new thread(hardware_thread);
-		    m_soft_thrd_hndl = new thread(software_thread); 
+		    m_soft_thrd_hndl = new thread(software_thread);
 	    }
         hdr.msgType = NULL_MSG;
         hdr.length = 0;
@@ -92,5 +92,5 @@ int main(int argc, char *argv[])
 {
     ModelSimServer *server = new ModelSimServer();
     server->listenOnSocket();
-    return 0;   
+    return 0;
 }
