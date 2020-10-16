@@ -3,8 +3,8 @@
 
 #include <thread>
 #include <iostream>
-#include "Network.hpp"
-#include "MyNetProto.hpp"
+#include "network.hpp"
+#include "myNetProto.hpp"
 
 
 class ModelSimServer
