@@ -4,23 +4,34 @@
 #include <thread>
 #include <iostream>
 #include "network.hpp"
-#include "myNetProto.hpp"
+#include "syscNetProto.hpp"
 
 
 class ModelSimServer
 {
     public:
-        /**
-        * function
-        *
-        * \param[in] 
-        * \param[in, out] 
-        * \param[in] 
-        *
-        * \return 
-        */
+	
+		// --------------------------------------------------------------------------------------------------------------------------------------------------
+		/**
+		 *		@brief			function description
+		 *		@param	param0	param0 description
+		 *		@param	param1	param1 description
+		 *		@return			0 success, 1 failure
+		 */
+		// --------------------------------------------------------------------------------------------------------------------------------------------------
         ModelSimServer();
-        
+
+
+		// --------------------------------------------------------------------------------------------------------------------------------------------------
+		/**
+		 *		@brief			function description
+		 *		@param	param0	param0 description
+		 *		@param	param1	param1 description
+		 *		@return			0 success, 1 failure
+		 */
+		// --------------------------------------------------------------------------------------------------------------------------------------------------
+		~ModelSimServer();
+
         
         /**
         * function

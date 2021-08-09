@@ -114,7 +114,7 @@ ADD_EXECUTABLE(${TARGET_NAME} ${TARGET_SRCS} ${TARGET_HEADERS})
 
 # BEGIN Build dependencies --------------------------------------------------------------------------------------------------------------------------
 ADD_DEPENDENCIES(${TARGET_NAME} network)
-ADD_DEPENDENCIES(${TARGET_NAME} myNetProto)
+ADD_DEPENDENCIES(${TARGET_NAME} syscNetProto)
 # END Build dependencies ----------------------------------------------------------------------------------------------------------------------------
 
 
@@ -164,7 +164,7 @@ ELSE()
         /usr/include/
         ${PROJECT_SOURCE_DIR}/inc/
         ${PROJECT_SOURCE_DIR}/../network/inc/
-        ${PROJECT_SOURCE_DIR}/../myNetProto/inc/
+        ${PROJECT_SOURCE_DIR}/../syscNetProto/inc/
     )
 ENDIF()
 # END Include directories ---------------------------------------------------------------------------------------------------------------------------
@@ -180,8 +180,8 @@ ELSE()
         -L/usr/local/lib/
         -L/usr/lib/
         -L${PROJECT_SOURCE_DIR}/../network/build/${BUILD_DIR_SUFFIX}/
-        -L${PROJECT_SOURCE_DIR}/../myNetProto/build/${BUILD_DIR_SUFFIX}/
-        -lmyNetProto
+        -L${PROJECT_SOURCE_DIR}/../syscNetProto/build/${BUILD_DIR_SUFFIX}/
+        -lsyscNetProto
         -lnetwork
         -lpthread
     )
