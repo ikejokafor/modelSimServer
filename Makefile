@@ -16,7 +16,7 @@ CC = g++
 
 # define any compile-time flags
 # C++ compiler flags (-g -O0 -O1 -O2 -O3 -Wall -std=c++14 -std=c++11 -fPIC -fexceptions)
-CFLAGS = -Wall -std=c++1y -g -fPIC -fexceptions
+CFLAGS = -Wall -std=c++1y -g -fPIC -fexceptions -D_GLIBCXX_USE_CXX11_ABI=0
 
 
 # define any directories containing header files other than /usr/include
