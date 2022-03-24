@@ -13,9 +13,9 @@ class ModelSimServer
 	
 		// --------------------------------------------------------------------------------------------------------------------------------------------------
 		/**
-		 *		@brief			constructor for ModelSimServer class
+		 *		\brief			constructor for ModelSimServer class
          *
-		 *		@return			returns pointer to ModelSimServer class
+		 *		\return			returns pointer to ModelSimServer class
 		 */
 		// --------------------------------------------------------------------------------------------------------------------------------------------------
         ModelSimServer();
@@ -23,7 +23,7 @@ class ModelSimServer
 
 		// --------------------------------------------------------------------------------------------------------------------------------------------------
 		/**
-		 *		@brief			destructor for ModelSimServer class
+		 *		\brief			destructor for ModelSimServer class
 		 */
 		// --------------------------------------------------------------------------------------------------------------------------------------------------
 		~ModelSimServer();
@@ -31,7 +31,7 @@ class ModelSimServer
 
        	// --------------------------------------------------------------------------------------------------------------------------------------------------
         /**
-        *       function        function for listening on network socket
+        *       \brief          function for listening on network socket
         *
         *       \return         -1 if listening fails
         */
@@ -41,13 +41,8 @@ class ModelSimServer
 
        	// --------------------------------------------------------------------------------------------------------------------------------------------------
         /**
-        *       function        thread responsible for hardware communication
+        *       \brief        thread responsible for hardware communication
         *
-        *   \param[in] 
-        *   \param[in, out] 
-        *   \param[in] 
-        *
-        *   \return 
         */
         // --------------------------------------------------------------------------------------------------------------------------------------------------
         static void hardware_thread();
@@ -55,13 +50,8 @@ class ModelSimServer
         
        	// --------------------------------------------------------------------------------------------------------------------------------------------------
         /**
-        *       function        thread responsible for hardware communication
+        *       \brief        thread responsible for hardware communication
         *
-        * \param[in] 
-        * \param[in, out] 
-        * \param[in] 
-        *
-        * \return 
         */
         // --------------------------------------------------------------------------------------------------------------------------------------------------     
         static void software_thread();
