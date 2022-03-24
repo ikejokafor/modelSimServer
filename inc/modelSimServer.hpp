@@ -13,10 +13,9 @@ class ModelSimServer
 	
 		// --------------------------------------------------------------------------------------------------------------------------------------------------
 		/**
-		 *		@brief			function description
-		 *		@param	param0	param0 description
-		 *		@param	param1	param1 description
-		 *		@return			0 success, 1 failure
+		 *		@brief			constructor for ModelSimServer class
+         *
+		 *		@return			returns pointer to ModelSimServer class
 		 */
 		// --------------------------------------------------------------------------------------------------------------------------------------------------
         ModelSimServer();
@@ -24,17 +23,39 @@ class ModelSimServer
 
 		// --------------------------------------------------------------------------------------------------------------------------------------------------
 		/**
-		 *		@brief			function description
-		 *		@param	param0	param0 description
-		 *		@param	param1	param1 description
-		 *		@return			0 success, 1 failure
+		 *		@brief			destructor for ModelSimServer class
 		 */
 		// --------------------------------------------------------------------------------------------------------------------------------------------------
 		~ModelSimServer();
 
-        
+
+       	// --------------------------------------------------------------------------------------------------------------------------------------------------
         /**
-        * function
+        *       function        function for listening on network socket
+        *
+        *       \return         -1 if listening fails
+        */
+        // --------------------------------------------------------------------------------------------------------------------------------------------------
+        int listenOnSocket();
+
+
+       	// --------------------------------------------------------------------------------------------------------------------------------------------------
+        /**
+        *       function        thread responsible for hardware communication
+        *
+        *   \param[in] 
+        *   \param[in, out] 
+        *   \param[in] 
+        *
+        *   \return 
+        */
+        // --------------------------------------------------------------------------------------------------------------------------------------------------
+        static void hardware_thread();
+        
+        
+       	// --------------------------------------------------------------------------------------------------------------------------------------------------
+        /**
+        *       function        thread responsible for hardware communication
         *
         * \param[in] 
         * \param[in, out] 
@@ -42,36 +63,13 @@ class ModelSimServer
         *
         * \return 
         */
-        int listenOnSocket();
-
-
-        /**
-        * function
-        *
-        * \param[in] 
-        * \param[in, out] 
-        * \param[in] 
-        *
-        * \return 
-        */ 
-        static void hardware_thread();
-        
-        
-        /**
-        * function
-        *
-        * \param[in] 
-        * \param[in, out] 
-        * \param[in] 
-        *
-        * \return 
-        */        
+        // --------------------------------------------------------------------------------------------------------------------------------------------------     
         static void software_thread();
         
 
-        int m_socket;
-        static int m_hard_soc;
-        static int m_soft_soc;
-        std::thread* m_hard_thrd_hndl;
-        std::thread* m_soft_thrd_hndl;
+        int m_socket; /*!< socket for listen on the network */
+        static int m_hard_soc; /*!< hardware socket */
+        static int m_soft_soc; /*!< software socket */
+        std::thread* m_hard_thrd_hndl; /*!< handle for hardware thread  */
+        std::thread* m_soft_thrd_hndl; /*!< handle for software thread */
 };
