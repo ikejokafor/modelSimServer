@@ -4,6 +4,6 @@ Server which handles communication between ModelSim Simulator and software execu
 
 ## Dependencies
 
-network
-syscNetProto
+network  
+syscNetProto  
 
